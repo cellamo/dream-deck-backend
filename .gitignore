@@ -1,3 +1,42 @@
 node_modules
 .env
 dist
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Static files
+/static/
+/media/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Compiled Python files
+*.pyc
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.swp
+*~
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
