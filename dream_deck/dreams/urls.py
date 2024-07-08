@@ -7,6 +7,8 @@ from .views import SignUpView, LoginView
 
 router = DefaultRouter()
 router.register(r'dreams', views.DreamViewSet)
+router.register(r'emotions', views.EmotionViewSet)
+router.register(r'themes', views.ThemeViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -14,6 +16,10 @@ urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
     
+    path('suggest-themes/', views.suggest_themes, name='suggest-themes'),
+    path('suggest-emotions/', views.suggest_emotions, name='suggest_emotions'),
+    path('suggest-title/', views.suggest_title, name='suggest_dreams'),
+
     # Simple JWT token URLs
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

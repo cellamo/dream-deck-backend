@@ -43,6 +43,17 @@ class DreamSerializer(serializers.ModelSerializer):
             DreamTheme.objects.create(dream=dream, theme=theme)
 
         return dream
+    
+
+class EmotionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Emotion
+        fields = ['id', 'name']
+
+class ThemeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Theme
+        fields = ['id', 'name']
 
 
 User = get_user_model()
