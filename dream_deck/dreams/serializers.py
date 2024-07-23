@@ -1,9 +1,14 @@
 from rest_framework import serializers
-from .models import Dream, Emotion, Theme, DreamEmotion, DreamTheme
+from .models import Dream, Emotion, Theme, DreamEmotion, DreamTheme, DreamInsight
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 
 
+class DreamInsightSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DreamInsight
+        fields = ['summary', 'analysis']
+        
 class DreamSerializer(serializers.ModelSerializer):
     emotions = serializers.ListField(
         child=serializers.DictField(), write_only=True, required=False
@@ -11,6 +16,7 @@ class DreamSerializer(serializers.ModelSerializer):
     themes = serializers.ListField(
         child=serializers.CharField(), write_only=True, required=False
     )
+    insight = DreamInsightSerializer(read_only=True)
 
     class Meta:
         model = Dream
@@ -23,6 +29,7 @@ class DreamSerializer(serializers.ModelSerializer):
             "audio_recording",
             "emotions",
             "themes",
+            "insight",
         ]
         read_only_fields = ["id", "date"]
 
@@ -99,3 +106,5 @@ class UserSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     usernameOrEmail = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=128, write_only=True)
+    
+    

@@ -127,3 +127,13 @@ class CollaborativeDream(models.Model):
 
     def __str__(self):
         return f"Collaborative dream by {self.user.username} for prompt: {self.prompt.prompt_text[:50]}..."
+
+class DreamInsight(models.Model):
+    dream = models.OneToOneField(Dream, on_delete=models.CASCADE, related_name='insight')
+    summary = models.TextField()
+    analysis = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Insight for {self.dream.title}"

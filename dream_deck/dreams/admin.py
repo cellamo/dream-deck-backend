@@ -4,7 +4,7 @@ from .models import (
     User, Dream, Emotion, DreamEmotion, Theme, DreamTheme, 
     ArtworkGeneration, SoundtrackGeneration, DreamChallenge, 
     UserChallenge, LucidDreamingProgress, CulturalInterpretation, 
-    DailyTask, DreamMeditation, DreamPrompt, CollaborativeDream
+    DailyTask, DreamMeditation, DreamPrompt, CollaborativeDream, DreamInsight
 )
 
 class CustomUserAdmin(UserAdmin):
@@ -56,6 +56,12 @@ class DreamPromptAdmin(admin.ModelAdmin):
 
 class CollaborativeDreamAdmin(admin.ModelAdmin):
     list_display = ['prompt', 'user', 'created_at']
+    
+class DreamInsightAdmin(admin.ModelAdmin):
+    list_display = ['dream', 'created_at', 'updated_at']
+    search_fields = ['dream__title', 'summary', 'analysis']
+    readonly_fields = ['created_at', 'updated_at']
+
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Dream, DreamAdmin)
@@ -71,3 +77,4 @@ admin.site.register(DailyTask, DailyTaskAdmin)
 admin.site.register(DreamMeditation, DreamMeditationAdmin)
 admin.site.register(DreamPrompt, DreamPromptAdmin)
 admin.site.register(CollaborativeDream, CollaborativeDreamAdmin)
+admin.site.register(DreamInsight, DreamInsightAdmin)

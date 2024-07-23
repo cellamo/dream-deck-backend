@@ -40,3 +40,5 @@ env/
 htmlcov/
 .coverage
 .coverage.*
+
+dream_deck/logs/
